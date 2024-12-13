@@ -1,0 +1,150 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라인 배정 주작불가능 반박거절</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+        select, button {
+            margin: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        select {
+            background: #ffffff;
+            color: #333;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>라인 배정 주작불가능 반박거절</h1>
+    <div>
+        <div>
+            <select id="player1">
+                <option value="">플레이어 1 선택</option>
+                <option value="조재현">조재현</option>
+                <option value="강기훈">강기훈</option>
+                <option value="김민석">김민석</option>
+                <option value="최명기">최명기</option>
+                <option value="이재욱">이재욱</option>
+                <option value="정진수">정진수</option>
+            </select>
+        </div>
+        <div>
+            <select id="player2">
+                <option value="">플레이어 2 선택</option>
+                <option value="조재현">조재현</option>
+                <option value="강기훈">강기훈</option>
+                <option value="김민석">김민석</option>
+                <option value="최명기">최명기</option>
+                <option value="이재욱">이재욱</option>
+                <option value="정진수">정진수</option>
+            </select>
+        </div>
+        <div>
+            <select id="player3">
+                <option value="">플레이어 3 선택</option>
+                <option value="조재현">조재현</option>
+                <option value="강기훈">강기훈</option>
+                <option value="김민석">김민석</option>
+                <option value="최명기">최명기</option>
+                <option value="이재욱">이재욱</option>
+                <option value="정진수">정진수</option>
+            </select>
+        </div>
+        <div>
+            <select id="player4">
+                <option value="">플레이어 4 선택</option>
+                <option value="조재현">조재현</option>
+                <option value="강기훈">강기훈</option>
+                <option value="김민석">김민석</option>
+                <option value="최명기">최명기</option>
+                <option value="이재욱">이재욱</option>
+                <option value="정진수">정진수</option>
+            </select>
+        </div>
+        <div>
+            <select id="player5">
+                <option value="">플레이어 5 선택</option>
+                <option value="조재현">조재현</option>
+                <option value="강기훈">강기훈</option>
+                <option value="김민석">김민석</option>
+                <option value="최명기">최명기</option>
+                <option value="이재욱">이재욱</option>
+                <option value="정진수">정진수</option>
+            </select>
+        </div>
+        <button onclick="assignLanes()">라인 배정하기</button>
+    </div>
+    <div class="result" id="result"></div>
+
+    <script>
+        const lanes = ["탑", "정글", "미드", "원딜", "서폿"];
+
+        function assignLanes() {
+            const player1 = document.getElementById("player1").value.trim();
+            const player2 = document.getElementById("player2").value.trim();
+            const player3 = document.getElementById("player3").value.trim();
+            const player4 = document.getElementById("player4").value.trim();
+            const player5 = document.getElementById("player5").value.trim();
+
+            const players = [player1, player2, player3, player4, player5];
+
+            if (new Set(players).size !== players.length || players.includes("")) {
+                alert("모든 플레이어를 중복 없이 선택해주세요!");
+                return;
+            }
+
+            const shuffledLanes = [...lanes].sort(() => Math.random() - 0.5);
+            let resultHTML = "<h2>라인 배정 결과</h2><ul>";
+
+            players.forEach((player, index) => {
+                resultHTML += `<li>${player}: ${shuffledLanes[index]}</li>`;
+            });
+
+            resultHTML += "</ul>";
+            document.getElementById("result").innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>
+
